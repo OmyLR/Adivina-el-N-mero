@@ -17,4 +17,12 @@
     <servlet-name>GameManager</servlet-name>
     <url-pattern>/jugar</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>Juego</servlet-name>
+  	<jsp-file>/src/views/partida.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Juego</servlet-name>
+  	<url-pattern>/partida</url-pattern>
+  </servlet-mapping>
 </web-app>

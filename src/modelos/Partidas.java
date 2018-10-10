@@ -40,5 +40,7 @@ public class Partidas {
 		this.estado = estado;
 	}
 	
-	
+	public String toString() {
+		return "Nº:"+getnPartida()+" - Intentos: "+getnIntentos()+" - Solución: "+getRespuesta()+" - Estado: "+getEstado();
+	}
 }

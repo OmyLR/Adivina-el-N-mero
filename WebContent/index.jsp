@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,7 +30,19 @@
 					</div>
 					<button type="submit" class="btn btn-primary col-md-3 offset-md-8" name="Enviar" value="Enviar">Enviar</button>
 				</form>
+				<%
+					String err = (String) request.getSession().getAttribute("error");
+					if(err != null){
+				%>
+				<div class="col-md-10 alert alert-danger alerta">
+					<%=err %>
+				</div>
+				
+				<%  request.getSession().setAttribute("error", null);
+				
+					}  %>
 			</div>
+			
 		</div>
 	</body>
 </html>

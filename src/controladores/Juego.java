@@ -15,6 +15,7 @@ public class Juego {
 	private ArrayList<Intento> intentos;
 	private ArrayList<Partidas> historial;
 	private Estado partidaAct;
+	private boolean pista, solucion;
 	
 	public Juego(int numA, int numB, int oportunidades) {
 		this.numA = numA;
@@ -24,19 +25,14 @@ public class Juego {
 		intentos = new ArrayList<Intento>();
 		historial = new ArrayList<Partidas>();
 		this.partidaAct = Estado.Jugando;
+		this.pista = false;
+		this.solucion = false;
 	}
 	
+	
 	public void jugar(int num) {
-		switch(partidaAct){
-			case Jugando:
-				intento(num);
-				break;
-			case Perdedor:
-				perder();
-				break;
-			case Ganador:
-				ganar();
-				break;
+		if(intentos.size() <= oportunidades && this.partidaAct == Estado.Jugando) {
+			intento(num);
 		}
 	}
 	
@@ -45,8 +41,12 @@ public class Juego {
 			insertarIntento(num, Comparacion.Mayor);
 		} else if (Utiles.mayorQue(this.aleatorio, num)){
 			insertarIntento(num, Comparacion.Menor);
-		} else {
+		} else {;
 			insertarIntento(num, Comparacion.Igual);
+			ganar();
+		}
+		if(intentos.size() == oportunidades) {
+			perder();
 		}
 	}
 	
@@ -65,20 +65,24 @@ public class Juego {
 		this.historial = new ArrayList<Partidas>();
 	}
 	
-	public void nuevaPartida(int numA, int numB) {
+	public void nuevaPartida() {
 		generarAleatorio();
 		this.partidaAct = Estado.Jugando;
 		this.intentos = new ArrayList<Intento>();
+		this.pista = false;
+		this.solucion = false;
 	}
 	
 	private void ganar() {
 		this.partidaAct = Estado.Ganador;
 		insertarPartida();
+		nuevaPartida();
 	}
 	
 	private void perder() {
 		this.partidaAct = Estado.Perdedor;
 		insertarPartida();
+		nuevaPartida();
 	}
 	
 	private void insertarPartida() {
@@ -93,7 +97,7 @@ public class Juego {
 	private void generarAleatorio() {
 		this.aleatorio = (int)(Math.random()*numB)+numA;
 	}
-
+	
 	public int getNumA() {
 		return numA;
 	}
@@ -133,6 +137,71 @@ public class Juego {
 	public void setHistorial(ArrayList<Partidas> historial) {
 		this.historial = historial;
 	}
+
+
+	public int getAleatorio() {
+		return aleatorio;
+	}
+
+
+	public void setAleatorio(int aleatorio) {
+		this.aleatorio = aleatorio;
+	}
+
+
+	public Estado getPartidaAct() {
+		return partidaAct;
+	}
+
+
+	public void setPartidaAct(Estado partidaAct) {
+		this.partidaAct = partidaAct;
+	}
+
+
+	public boolean isPista() {
+		return pista;
+	}
+
+
+	public void setPista(boolean pista) {
+		this.pista = pista;
+	}
+
+
+	public boolean isSolucion() {
+		return solucion;
+	}
+
+
+	public void setSolucion(boolean solucion) {
+		this.solucion = solucion;
+	}
 	
+	public String mostrarPista() {
+		if(Utiles.mayorQue(aleatorio, (int) (this.numB/2))) {
+			return " El número es mayor que "+(this.numB/2);
+		}
+		return "El número es menor que "+(this.numB/2);
+	}
+	
+	public String generarAviso() {
+		String aviso = "";
+		if(intentos.size() > 0) {
+			switch(intentos.get(intentos.size()-1).getResult()){
+				case Mayor:
+					aviso = "El número ingresado es mayor";
+					break;
+				case Menor: 
+					aviso = "El número ingresado es menor";
+					break;
+				case Igual: 
+					aviso = "Felicitaciones Has Acertado!!";
+					break;
+			}
+		}
+		
+		return aviso;
+	}
 	
 }

@@ -5,20 +5,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Intento {
-	private LocalDateTime fecha;
+	private String fecha;
 	private int nIntento;
 	private int nSeleccionado;
 	private Comparacion result;
 	
 	public Intento() {
-		this.fecha = LocalDateTime.parse(new Date().toString(), DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss"));
+		LocalDateTime x = LocalDateTime.now();
+		this.fecha = x.format(DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss"));
+		
 	}
 
-	public LocalDateTime getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDateTime fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
