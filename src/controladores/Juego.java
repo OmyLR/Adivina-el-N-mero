@@ -73,6 +73,12 @@ public class Juego {
 		this.solucion = false;
 	}
 	
+	public void nuevaPartida(int min, int max) {
+		this.numA = min;
+		this.numB = max;
+		nuevaPartida();
+	}
+	
 	private void ganar() {
 		this.partidaAct = Estado.Ganador;
 		insertarPartida();

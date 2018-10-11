@@ -29,7 +29,7 @@
 							<input type="number" class="form-control" value="" placeholder="Máximo" name="max">
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary col-md-3 offset-md-8" name="accion" name="Enviar" value="reiniciar">Enviar</button>
+					<button type="submit" class="btn btn-primary col-md-3 offset-md-8" name="accion" name="Enviar" value="nueva">Enviar</button>
 				</form>
 				<%
 					String err = (String) request.getSession().getAttribute("error");
