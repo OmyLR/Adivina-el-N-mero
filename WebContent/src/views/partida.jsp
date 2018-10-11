@@ -91,7 +91,7 @@
 					</div>
       			</form>
       		</div>
-     		<div class="col-md-1 boxOptions">
+     		<div class="col-md-2 boxOptions">
       			<div class="col-md-12 titOptions">
       				Elecciones:
       			</div>
@@ -99,13 +99,13 @@
       				<% if(partida != null){
       					for(int i=0; i<partida.getIntentos().size(); i++){
       						Intento intento = partida.getIntentos().get(i);
-      						out.print(intento.getnSeleccionado()+"</br>");
+      						out.print(intento.getFecha()+" - "+intento.getnSeleccionado()+"</br>");
       					}
       				} %>
       				
       			</div>
       		</div>
-      		<div class="col-md-4 boxTrys">
+      		<div class="col-md-3 boxTrys">
       			<div class="col-md-12 titTrys">
       				Partidas Realizadas.
       			</div>

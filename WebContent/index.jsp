@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="controladores.Juego" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,7 +29,7 @@
 							<input type="number" class="form-control" value="" placeholder="Máximo" name="max">
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary col-md-3 offset-md-8" name="Enviar" value="Enviar">Enviar</button>
+					<button type="submit" class="btn btn-primary col-md-3 offset-md-8" name="accion" name="Enviar" value="reiniciar">Enviar</button>
 				</form>
 				<%
 					String err = (String) request.getSession().getAttribute("error");
