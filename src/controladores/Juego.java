@@ -101,7 +101,7 @@ public class Juego {
 	}
 	
 	private void generarAleatorio() {
-		this.aleatorio = (int)(Math.random()*numB)+numA;
+		this.aleatorio = (int)(Math.random() * (numB - numA)) + numA;
 	}
 	
 	public int getNumA() {

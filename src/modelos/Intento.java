@@ -48,5 +48,9 @@ public class Intento {
 		this.result = result;
 	}
 	
+	public String toString() {
+		return this.fecha+" - "+this.nSeleccionado;
+	}
+	
 	
 }

@@ -3,6 +3,8 @@
     %>
     <%@ page import="controladores.Juego" %>
     <%@ page import ="modelos.Intento" %>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -35,9 +37,7 @@
 				 			<div class="col-md-12">
 				   				<div class="form-check">
 								  <input class="form-check-input" name="pista" type="checkbox" id="checkPista" onclick="mostrarPista()" <%
-								  	if(partida != null){
 								  		out.print((partida.isPista())?"checked":"");
-								  	}
 								  %>>
 								  <label class="form-check-label" for="defaultCheck1">
 									    Mostrar Pista
@@ -45,9 +45,8 @@
 								</div>
 								<div class="form-check">
 								  <input class="form-check-input" type="checkbox" name="solucion" id="checkSol" onclick="mostrarSolucion()" <%
-								  	if(partida != null){
 								  		out.print((partida.isSolucion())?"checked":"");
-								  	}
+								  	
 								  %>>
 								  <label class="form-check-label" for="defaultCheck1">
 									    Mostrar Solución
@@ -96,13 +95,9 @@
       				Elecciones:
       			</div>
       			<div class="col-md-12" id="elecciones">
-      				<% if(partida != null){
-      					for(int i=0; i<partida.getIntentos().size(); i++){
-      						Intento intento = partida.getIntentos().get(i);
-      						out.print(intento.getFecha()+" - "+intento.getnSeleccionado()+"</br>");
-      					}
-      				} %>
-      				
+      				<c:forEach items="${partida.getIntentos()}" var="value">
+      					<c:out value="${value}"/></br>
+      				</c:forEach>      				
       			</div>
       		</div>
       		<div class="col-md-3 boxTrys">
@@ -110,12 +105,9 @@
       				Partidas Realizadas.
       			</div>
      			<div class="col-md-12" id="partidas">
-     				<% if(partida != null){
-     					
-     					for(int i=0; i<partida.getHistorial().size(); i++){
-     						out.print(partida.getHistorial().get(i)+"</br>");
-     					}
-     				} %>
+     				<c:forEach items="${partida.getHistorial()}" var="value">
+      					<c:out value="${value}"/></br>
+      				</c:forEach> 
       			</div>
      		</div>
      		<% if(request.getSession().getAttribute("error") != null) {%>
